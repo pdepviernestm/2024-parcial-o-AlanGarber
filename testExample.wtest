@@ -1,9 +1,28 @@
-import example.pepita
+import example.*
 
-describe "group of tests for pepita" {
-
-  test "pepita has initial energy" {
-    assert.equals(100, pepita.energy())
-  }
-
+test "grupo de personas viviendo un mismo evento" {
+  const persona1 = new Persona(edad = 15)
+  const persona2 = new Persona(edad = 16)
+  
+  // 1 palabra de 7 letras y otra de 8
+  const furia1 = new Furia(palabrotas = ["boludos", "palabrot"])
+  
+  const alegria2 = new Alegria(intensidad = 50)
+  
+  persona1.agregarEmocion(furia1)
+  persona2.agregarEmocion(alegria2)
+  
+  const grupo = [persona1, persona2]
+  
+  const evento = new Evento(impacto = 60, descripcion = "Fiesta")
+  
+  grupo.forEach({ persona => persona.vivirEvento(evento) })
+  
+  
+  assert.equals(1, persona1.cantidadEventos())
+  assert.equals(1, persona2.cantidadEventos())
+  
+  assert.equals(40, furia1.intensidad()) // 100 - 60
+  assert.equals(50, alegria2.intensidad())
+  // Como la cantidad de eventos no es par, no se libera la alegria
 }
